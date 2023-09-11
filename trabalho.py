@@ -17,7 +17,7 @@ def check_port(host, port, protocol):
     sc.settimeout(0.1)
     try:
         if (not sc.connect_ex((host, port))):
-            print(f'{GREEN}Port {port} is open and running {socket.getservbyport(port, protocol)}/tcp {RESET}')
+            print(f'{GREEN}Port {port} is open and running {socket.getservbyport(port, protocol)}/{protocol} {RESET}')
 
     except socket.error:
         pass
