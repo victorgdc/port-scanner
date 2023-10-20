@@ -5,6 +5,7 @@ from colorama import init, Fore
 init()
 GREEN = Fore.GREEN
 RED = Fore.RED
+YELLOW = Fore.YELLOW
 RESET = Fore.RESET
 
 # function to check if a port is open
@@ -22,8 +23,15 @@ def check_port(host, port, protocol):
     except socket.error:
         pass
 
-for port in range (0, 450):
+# getting the target and the ports to scan
+target = str(input('Enter the target IP or domain: '))
+port_begin = int(input('Enter the first port to scan: '))
+port_end = int(input('Enter the last port to scan: '))
+
+print()
+print(f'{YELLOW}Scanning {target} from port {port_begin} to {port_end}... {RESET}')
+for port in range (port_begin, port_end+1):
     # check for tcp protocol
-    check_port('104.21.52.8', port, 'tcp')
+    check_port(target, port, 'tcp')
     # check for udp protocol
-    check_port('104.21.52.8', port, 'udp')
+    check_port(target, port, 'udp')
